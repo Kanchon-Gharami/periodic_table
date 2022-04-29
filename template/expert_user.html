@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container my-4 p-0">
+    <div class="row m-0">
+        <div class="col-xl-2 pt-3">
+            <a href="{% url 'app:index' %}"><button type="button" class="btn btn-info"><span>&#8592; </span> Home</button></a>
+        </div>
+        <div class="col-xl-8">
+            <h2 class="text-center mx-auto">Welcome in Expert User Dashboard</h2>
+            <h6 class="text-center mx-auto">Input Any data and enrich our knowledgebase</h6>
+        </div>
+        <div class="col-xl-2" style="display:none;">
+            <a href="{% url 'app:index' %}"><button type="button" class="btn btn-info">Home</button></a>
+        </div>
+    </div>
+    
+    <hr>
+
+    <form class="container mt-5" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="form-group col-xl-4">
+                <label>Atomic Number</label>
+                <input type="number" class="form-control" name="atomic_number" placeholder="Enter atomic number">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Name">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Symbol</label>
+                <input type="text" class="form-control" name="symbol" placeholder="Symbol">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Phase</label>
+                <input type="text" class="form-control" name="phase" placeholder="Phase">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Discovered By</label>
+                <input type="text" class="form-control" name="discovered_by" placeholder="Discovered By">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Named By</label>
+                <input type="text" class="form-control" name="named_by" placeholder="Named By">
+            </div>
+
+            <div class="form-group col-xl-4">
+                <label>Period</label>
+                <input type="number" class="form-control" name="period" placeholder="Period">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Atomic Mass</label>
+                <input type="number" step="0.00001" class="form-control" name="atomic_mass" placeholder="Atomic Mass">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Boil</label>
+                <input type="number" step="0.00001" class="form-control" name="boil" placeholder="Boil">
+            </div>
+
+            <div class="form-group col-xl-4">
+                <label>Density</label>
+                <input type="number" step="0.00001" class="form-control" name="density" placeholder="Density">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Melt</label>
+                <input type="number" step="0.00001" class="form-control" name="melt" placeholder="Melt">
+            </div>
+            <div class="form-group col-xl-4">
+                <label>Molar Heat</label>
+                <input type="number" step="0.00001" class="form-control" name="molar_heat" placeholder="Molar Heat">
+            </div>
+
+            <div class="form-group col-xl-12">
+                <label>Category</label>
+                <input type="text" class="form-control" name="category" placeholder="Category">
+            </div>
+            <div class="form-group col-xl-12">
+                <label>Appearance</label>
+                <input type="text" class="form-control" name="appearance" placeholder="Appearance">
+            </div>
+            
+            <div class="form-group col-xl-12">
+                <label>Characteristics</label>
+                <textarea class="form-control" name="characteristics" rows="6" placeholder="Characteristics"></textarea>
+            </div>
+
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+</div>
+
+
+
+
+<style>
+
+</style>
+
+{% endblock %}
+
+

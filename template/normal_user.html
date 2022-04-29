@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container my-4 p-0">
+    <div class="row m-0">
+        <div class="col-xl-2 pt-3">
+            <a href="{% url 'app:index' %}"><button type="button" class="btn btn-info"><span>&#8592; </span> Home</button></a>
+        </div>
+        <div class="col-xl-8">
+            <h2 class="text-center mx-auto">Welcome in Normal User Dashboard</h2>
+            <h6 class="text-center mx-auto">Explore the power of our knowledgebase</h6>
+        </div>
+        <div class="col-xl-2" style="display:none;">
+            <a href="{% url 'app:index' %}"><button type="button" class="btn btn-info">Home</button></a>
+        </div>
+    </div>
+    
+    <hr>
+    <form class="input-group my-3" method="GET">
+        <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search by any keyword in your mind" name="searchkey" id="searchkey">
+        <button type="submit" class="btn btn-primary">search</button>
+    </form>
+
+
+    <div class="row m-0">
+        {% for i in substance_list %}
+        <div class="card my-3 mx-3" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{ i.symbol }}</h5>
+            <div class="row m-0">
+                <h6 class="card-subtitle mb-2 text-muted">{{ i.name }}</h6>
+                <h6 class="card-subtitle ml-auto text-primary">{{ i.atomic_number }}</h6>
+            </div>
+            <p class="card-text hideContent">{{ i.characteristics }}</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#detailsmodal-{{ i }}">Details</button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="detailsmodal-{{ i }}" tabindex="-1" role="dialog" aria-labelledby="detailsmodal-{{ i }}Title" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{{ i.name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body row m-0">
+                    <div class="col-xl-4"><p>atomic_number: {{ i.atomic_number }}</p></div>
+                    <div class="col-xl-4"><p>symbol: {{ i.symbol }}</p></div>
+                    <div class="col-xl-4"><p>category: {{ i.category }}</p></div>
+                    <div class="col-xl-4"><p>period: {{ i.period }}</p></div>
+                    <div class="col-xl-4"><p>phase: {{ i.phase }}</p></div>
+                    <div class="col-xl-4"><p>atomic_mass: {{ i.atomic_mass }}</p></div>
+                    <div class="col-xl-4"><p>boil: {{ i.boil }}</p></div>
+                    <div class="col-xl-4"><p>melt: {{ i.melt }}</p></div>
+                    <div class="col-xl-4"><p>molar_heat: {{ i.molar_heat }}</p></div>
+                    <div class="col-xl-12"><p>named_by: {{ i.named_by }}</p></div>
+                    <div class="col-xl-12"><p>discovered_by: {{ i.discovered_by }}</p></div>
+                    <div class="col-xl-12"><p>appearance: {{ i.appearance }}</p></div>
+                    <div class="col-xl-12"><p>characteristics: {{ i.characteristics }}</p></div>
+                    
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+
+    </div>    
+
+
+</div>
+
+
+
+
+<style>
+.card-title{
+    font-size: 40px;
+}
+
+.hideContent{
+    overflow: hidden;
+    line-height: 1em;
+    height: 5em;
+}
+
+</style>
+
+
+<script>
+    $( function() {
+      $( "#searchkey" ).autocomplete({
+        source: "{% url 'app:normal_user' %}"
+      });
+    } );
+</script>
+
+{% endblock %}
+
+
